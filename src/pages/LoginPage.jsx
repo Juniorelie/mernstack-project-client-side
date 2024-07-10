@@ -56,7 +56,7 @@ function LoginPage() {
 
       <p className="error">{errorMessage}</p>
       <p>
-        You don't have an account ? <Link to={"/signup"}>Sing up</Link>
+        You don't have an account ? <Link to={"/signup"}>Sign up</Link>
       </p>
       <button>Login</button>
     </form>

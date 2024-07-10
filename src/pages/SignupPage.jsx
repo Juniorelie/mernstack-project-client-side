@@ -7,7 +7,7 @@ function SignupPage() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    Password: "",
+    password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
