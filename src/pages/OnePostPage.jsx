@@ -55,11 +55,12 @@ function OnePostPage() {
       {isOwner && <Link to={`/${onePost._id}/edit`}>Edit post</Link>}
       <h2>{onePost.title}</h2>
       <p>
-        Created by:{" "}
+        Created by :{" "}
         <Link to={"/profile/" + onePost.userId._id}>
           {onePost.userId.username}
         </Link>
       </p>
+      <p>{new Date(onePost.createdAt).toLocaleDateString()}, At {new Date(onePost.createdAt).toLocaleTimeString()}</p>
       <p>{onePost.description}</p>
       <img src={onePost.image} alt="Image of the post" />
       {isOwner && <button onClick={handledelete}>Delete</button>}

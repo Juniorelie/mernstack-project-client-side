@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContextWrapper";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+// import service from "../service/api";
 
 function Navbar() {
   const { user, isLoggedIn, disconnect } = useContext(AuthContext);
 
   return (
-    <header className="flex justify-between px-4">
-      <h1>My memories</h1>
+    <div className="flex justify-between px-4">
+      <Link to={"/"}><h1>My memories</h1></Link>
       <nav>
-        <ul>
+        <ul className="flex justify-between">
           <li>
             <NavLink to="/">Home</NavLink>
             {!isLoggedIn ? (
@@ -24,20 +25,20 @@ function Navbar() {
             ) : (
               <>
                 <li>
-                  <button onClick={disconnect}>Logout</button>
-                </li>
-                <li>
                   <p>Welcome back {user.username}</p>
                 </li>
                 <li>
                   <NavLink to={"/create"}>Create post</NavLink>
+                </li>
+                <li>
+                  <button onClick={disconnect}>Logout</button>
                 </li>
               </>
             )}
           </li>
         </ul>
       </nav>
-    </header>
+    </div>
   );
 }
 

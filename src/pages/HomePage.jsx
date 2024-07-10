@@ -24,14 +24,12 @@ function HomePage() {
     <div>
       {posts &&
         posts.map((onePost) => (
-          <div key={onePost._id}>
-            <Link to={onePost._id}>
-              <h2>{onePost.title}</h2>
-            </Link>
-            <p>On {new Date(onePost.createdAt).toLocaleDateString()}</p>
-            <p>At {new Date(onePost.createdAt).toLocaleTimeString()}</p>
-            <p>{onePost.description}</p>
-            <img src={onePost.image} alt="Image of the post" />
+          <div key={onePost._id} className="py-4">
+              {/* <h2>{onePost.title}</h2>
+              <p>{onePost.description}</p> */}
+              <Link to={onePost._id}>
+                <img src={onePost.image} alt="Image of the post" />
+              </Link>
           </div>
         ))}
     </div>
