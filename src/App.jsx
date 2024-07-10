@@ -27,7 +27,7 @@ function App() {
           <Route path="/create" element={<CreatePostPage />} />
           <Route path="/:postId" element={<OnePostPage />} />
           <Route path="/:postId/edit" element={<EditPostPage />} />
-          <Route path="/:id" element={<UserProfilePage />} />
+          <Route path="/profile/:id" element={<UserProfilePage />} />
         </Route>
       </Routes>
     </>

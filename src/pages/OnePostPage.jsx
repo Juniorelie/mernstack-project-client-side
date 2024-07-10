@@ -1,9 +1,59 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import service from "../service/api";
+import { AuthContext } from "../context/AuthContextWrapper";
 
-function OnePostPage({ rooms }) {
-  const { id } = useParams();
-  return <div>OnePostPage</div>;
+function OnePostPage() {
+  const [onePost, setOnePost] = useState({});
+  const params = useParams();
+  const { user } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  async function fetchOnePost() {
+    try {
+      const post = await service.get(`/api/posts/${params.postId}`);
+      console.log(post);
+      setOnePost(post.data.post);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const isOwner = user?._id === onePost.userId?._id;
+
+  useEffect(() => {
+    fetchOnePost();
+  }, []);
+
+  async function handledelete(event) {
+    event.preventDefault();
+    try {
+      const response = await service.delete(`/api/posts/${params.postId}`);
+      console.log(response);
+      if (response.status === 204) {
+        setTimeout(() => {
+          navigate("/");
+        }, 200);
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    }
+  }
+
+  return (
+    <div>
+      {isOwner && <Link to={`/${onePost._id}/edit`}>Edit post</Link>}
+      <h2>{onePost.title}</h2>
+      <p>{onePost.description}</p>
+      <img src={onePost.image} alt="Image of the post" />
+      {isOwner && <button onClick={handledelete}>Delete</button>}
+    </div>
+  );
 }
 
 export default OnePostPage;

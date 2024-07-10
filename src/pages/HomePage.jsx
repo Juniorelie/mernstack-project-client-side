@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextWrapper";
 import service from "../service/api";
 
@@ -24,7 +25,9 @@ function HomePage() {
       {posts &&
         posts.map((onePost) => (
           <div key={onePost._id}>
-            <h2>{onePost.title}</h2>
+            <Link to={onePost._id}>
+              <h2>{onePost.title}</h2>
+            </Link>
             <p>{onePost.description}</p>
             <img src={onePost.image} alt="Image of the post" />
           </div>

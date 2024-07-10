@@ -26,7 +26,7 @@ function SignupPage() {
       if (response.status === 201) {
         setTimeout(() => {
           navigate("/login");
-        }, 300);
+        }, 200);
       }
     } catch (error) {
       console.log(error);
