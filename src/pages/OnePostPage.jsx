@@ -4,7 +4,7 @@ import service from "../service/api";
 import { AuthContext } from "../context/AuthContextWrapper";
 
 function OnePostPage() {
-  const [onePost, setOnePost] = useState({});
+  const [onePost, setOnePost] = useState(null);
   const params = useParams();
   const { user } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,7 +20,7 @@ function OnePostPage() {
     }
   }
 
-  const isOwner = user?._id === onePost.userId?._id;
+  const isOwner = user?._id === onePost?.userId?._id;
 
   useEffect(() => {
     fetchOnePost();
@@ -45,10 +45,21 @@ function OnePostPage() {
     }
   }
 
+  if (!onePost) {
+    return <p>Loading...</p>;
+  }
+  console.log(onePost);
+
   return (
     <div>
       {isOwner && <Link to={`/${onePost._id}/edit`}>Edit post</Link>}
       <h2>{onePost.title}</h2>
+      <p>
+        Created by:{" "}
+        <Link to={"/profile/" + onePost.userId._id}>
+          {onePost.userId.username}
+        </Link>
+      </p>
       <p>{onePost.description}</p>
       <img src={onePost.image} alt="Image of the post" />
       {isOwner && <button onClick={handledelete}>Delete</button>}

@@ -18,7 +18,7 @@ function HomePage() {
   }
   useEffect(() => {
     fetchPosts();
-  }, [user]);
+  }, []);
 
   return (
     <div>
@@ -28,6 +28,8 @@ function HomePage() {
             <Link to={onePost._id}>
               <h2>{onePost.title}</h2>
             </Link>
+            <p>On {new Date(onePost.createdAt).toLocaleDateString()}</p>
+            <p>At {new Date(onePost.createdAt).toLocaleTimeString()}</p>
             <p>{onePost.description}</p>
             <img src={onePost.image} alt="Image of the post" />
           </div>
