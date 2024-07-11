@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../service/api";
 import { AuthContext } from "../context/AuthContextWrapper";
+import PictureDiplay from "../components/PictureDiplay";
 
 function UserProfilePage() {
   const [posts, setPosts] = useState(null);
@@ -27,15 +28,21 @@ function UserProfilePage() {
   }
   console.log(posts);
   return (
-    <div>
+    <div className="container mx-auto flex flex-col items-center justify-center">
       <p>{profile.username}'s profile</p>
       <p>{posts.length} post(s) published</p>
-      <div>
+      <div className="flex  gap-8 md:gap-12 flex-wrap container mx-auto items-center justify-center  h-full py-10">
         {posts.map((post) => {
           return (
-            <div>
-              <p>{post.title}</p>
-              <img src={post.image} alt="" />
+            // <div className="">
+            //   <p>{post.title}</p>
+            //   <img src={post.image} alt="Image of the post" />
+            // </div>
+            <div className="flex  gap-8 md:gap-12 flex-wrap container mx-auto items-center justify-center  h-full py-10">
+              {posts &&
+                posts.map((onePost) => (
+                  <PictureDiplay onePost={onePost} key={onePost._id} />
+                ))}
             </div>
           );
         })}

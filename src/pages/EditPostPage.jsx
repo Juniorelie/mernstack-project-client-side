@@ -43,19 +43,34 @@ function EditPostPage() {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Title:</label>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-md mx-auto space-y-4 flex flex-col items-center justify-center h-screen w-full"
+    >
+      <div className="w-full">
+        <label
+          className="block mb-2 text-sm font-medium text-gray-300"
+          htmlFor="title"
+        >
+          Title:
+        </label>
         <input
+          className="p-2 border border-gray-300 rounded w-full"
           type="text"
           id="title"
           value={title}
           onChange={(e) => setTitle(e.currentTarget.value)}
         />
       </div>
-      <div>
-        <label htmlFor="description">Description:</label>
+      <div className="w-full">
+        <label
+          className="block mb-2 text-sm font-medium text-gray-300"
+          htmlFor="description"
+        >
+          Description:
+        </label>
         <input
+          className="p-2 border border-gray-300 rounded w-full"
           type="text"
           id="description"
           value={description}
@@ -63,7 +78,9 @@ function EditPostPage() {
         />
       </div>
 
-      <button>Edit Post</button>
+      <button className="w-full p-2 text-slate-800 hover:text-green-900 text-md md:text-lg rounded bg-green-600 hover:bg-purple-500 transition-colors font-bold">
+        Edit Post
+      </button>
     </form>
   );
 }
