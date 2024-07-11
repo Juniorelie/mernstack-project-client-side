@@ -28,9 +28,9 @@ function UserProfilePage() {
   }
   console.log(posts);
   return (
-    <div className="container mx-auto flex flex-col items-center justify-center">
-      <p>{profile.username}'s profile</p>
-      <p>{posts.length} post(s) published</p>
+    <div className="container mx-auto flex flex-col items-center justify-center pt-4">
+      <p className="text-lg font-semibold">{profile.username}'s profile</p>
+      <p>{posts.length} {posts.length <= 1 ? "post" : "posts"} published</p>
       <div className="flex  gap-8 md:gap-12 flex-wrap container mx-auto items-center justify-center  h-full py-10">
         {posts.map((post) => {
           return (

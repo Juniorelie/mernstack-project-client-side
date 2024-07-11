@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContextWrapper";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 // import service from "../service/api";
 
 function Navbar() {
@@ -13,7 +14,8 @@ function Navbar() {
 
   return (
     <div className="sticky top-0 z-50 container mx-auto flex justify-between px-4 bg-slate-800 text-[whitesmoke] items-center py-4">
-      <Link to={"/"}>
+      <Link to={"/"} className="flex items-center">
+        <img src={logo} alt="Logo" className="w-10 h-10 mr-2" />
         <h1 className="text-3xl font-extrabold">MY MEMORIES</h1>
       </Link>
       <button className="md:hidden" onClick={toggleModal}>

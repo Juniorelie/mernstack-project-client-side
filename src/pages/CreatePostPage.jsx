@@ -62,7 +62,7 @@ function CreatePostPage() {
       </div>
       <div className="w-full">
         <label
-          className="block mb-2 text-sm font-medium text-gray-300"
+          className="block mb-2 text-sm font-medium text-gray-300 cursor-pointer"
           htmlFor="image"
         >
           Image:
@@ -73,7 +73,8 @@ function CreatePostPage() {
           file:rounded-md file:border-0
           file:text-sm file:font-semibold
           file:bg-violet-50 file:text-violet-700
-          hover:file:bg-violet-100"
+          hover:file:bg-violet-100 
+          cursor-pointer"
           type="file"
           id="image"
           onChange={(e) => setImage(e.currentTarget.files[0])}

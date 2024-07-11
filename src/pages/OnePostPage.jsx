@@ -73,13 +73,13 @@ function OnePostPage() {
 
   return (
     <div className="container mx-auto flex flex-col items-center justify-center h-screen max-w-3xl">
-      {isOwner && <Link to={`/${onePost._id}/edit`}>Edit post</Link>}
+      
       <h2 className="md:text-4xl py-2 text-lg md:font-bold font-semibold uppercase leading-8 tracking-wide text-slate-800">
         {onePost.title}
       </h2>
 
       <img
-        className="cover-image w-full h-[20vh] md:h-[30vh] lg:h-[40vh] object-cover hover:shadow-lg transition-shadow duration-200"
+        className="cover-image w-full h-[20vh] md:h-[30vh] lg:h-[40vh] object-cover hover:shadow-xl transition-shadow duration-200"
         src={onePost.image}
         alt="Image of the post"
       />
@@ -112,9 +112,12 @@ function OnePostPage() {
           {likes} {likes === 1 ? "like" : "likes"}
         </span>
       </div>
-
-      {isOwner && <button onClick={handledelete}>Delete</button>}
+      <div className="flex justify-between pt-2 gap-6 text-lg font-semibold">
+        <p className="hover:text-blue-500">{isOwner && <Link to={`/${onePost._id}/edit`}>Edit post</Link>}</p>{" "}
+        <p className="hover:text-red-500">{isOwner && <button onClick={handledelete}>Delete</button>}</p>
     </div>
+      </div>
+      
   );
 }
 
